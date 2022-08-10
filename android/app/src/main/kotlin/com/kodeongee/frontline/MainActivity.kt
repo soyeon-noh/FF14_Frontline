@@ -1,4 +1,4 @@
-package com.example.ff_frontline
+package com.kodeongee.frontline
 
 import io.flutter.embedding.android.FlutterActivity
 
