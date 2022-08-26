@@ -56,6 +56,15 @@ class TheBorderlandRuins extends StatelessWidget {
                     ["요격기","25점"],
                   ],
                 ),
+                FrontlinePageContent(
+                  title:"마물 팝업 시간",
+                  infoList: [
+                    [],
+                    ["요격 시스템", "10:00"],
+                    [],
+                    ["요격기", "19:00    14:45    10:30     6:15     1:50"],
+                  ]
+                )
               ],
             ),
           ],
