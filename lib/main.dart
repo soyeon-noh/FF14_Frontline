@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 import 'MainBody.dart';
 import 'drawer/MainDrawer.dart';
 
+// 국제화
+import 'package:intl/date_symbol_data_local.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // 조매 26
+
+  // 국제화
+  initializeDateFormatting().then((value) => runApp(MyApp(bodyWidget: MainBody())));
 
   runApp(const MyApp(bodyWidget: MainBody(),));
 }
@@ -14,7 +20,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({
     Key? key,
-    required Widget this.bodyWidget,
+    required Widget? this.bodyWidget,
   }) : super(key: key);
 
   final bodyWidget;
