@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:ff_frontline/MainBody.dart';
 import 'package:ff_frontline/drawer/MainDrawerItem.dart';
-import 'package:ff_frontline/frontline/OnsalHakair.dart';
-import 'package:ff_frontline/frontline/SealRock.dart';
-import 'package:ff_frontline/frontline/TheFieldsOfGlory.dart';
-import 'package:ff_frontline/frontline/TheBorderlandRuins.dart';
-import '../main.dart';
+import 'package:flutter/material.dart';
+
+import '../onPressed/OnItemPressed.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({
@@ -34,53 +30,33 @@ class MainDrawer extends StatelessWidget {
             MainDrawerItem(
                 name: '오늘 전장',
                 icon: Icons.home,
-                onPressed: () => onItemPressed(context, index: 0)),
+                onPressed: () => onItemPressed(context, index: 4)),
+            MainDrawerItem(
+                name: '전장 달력',
+                icon: Icons.calendar_month,
+                onPressed: () => onItemPressed(context, index: 5)
+            ),
             MainDrawerItem(
                 name: '외곽 유적지대',
                 icon: Icons.chevron_right,
-                onPressed: () => onItemPressed(context, index: 1)),
+                onPressed: () => onItemPressed(context, index: 2)),
             MainDrawerItem(
                 name: '봉인된 바위섬',
                 icon: Icons.chevron_right,
-                onPressed: () => onItemPressed(context, index: 2)),
+                onPressed: () => onItemPressed(context, index: 3)),
             MainDrawerItem(
                 name: '영광의 평원',
                 icon: Icons.chevron_right,
-                onPressed: () => onItemPressed(context, index: 3)),
+                onPressed: () => onItemPressed(context, index: 0)),
             MainDrawerItem(
                 name: '온살 하카이르',
                 icon: Icons.chevron_right,
-                onPressed: () => onItemPressed(context, index: 4)),
+                onPressed: () => onItemPressed(context, index: 1)),
           ],
         ),
       ),
     );
   }
 
-  void onItemPressed(BuildContext context, {required int index}) {
-    Navigator.pop(context);
 
-    switch (index) {
-      case 0:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MyApp(bodyWidget: MainBody())));
-        break;
-      case 1:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MyApp(bodyWidget: TheBorderlandRuins())));
-        break;
-      case 2:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MyApp(bodyWidget: SealRock())));
-        break;
-      case 3:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MyApp(bodyWidget: TheFieldsOfGlory())));
-        break;
-      case 4:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MyApp(bodyWidget: OnsalHakair())));
-        break;      
-    }
-  }
 }
