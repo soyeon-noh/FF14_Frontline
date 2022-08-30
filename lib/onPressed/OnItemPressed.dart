@@ -1,5 +1,4 @@
 import 'package:ff_frontline/MainBody.dart';
-import 'package:ff_frontline/calendar/MainCalendar.dart';
 import 'package:ff_frontline/frontline/OnsalHakair.dart';
 import 'package:ff_frontline/frontline/SealRock.dart';
 import 'package:ff_frontline/frontline/TheBorderlandRuins.dart';
@@ -31,10 +30,6 @@ void onItemPressed(BuildContext context, {required int index}) {
     case 4:
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const MyApp(bodyWidget: MainBody())));
-      break;
-    case 5:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const MyApp(bodyWidget: MainCalendar())));
       break;
   }
 }

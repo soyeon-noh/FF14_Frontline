@@ -32,11 +32,6 @@ class MainDrawer extends StatelessWidget {
                 icon: Icons.home,
                 onPressed: () => onItemPressed(context, index: 4)),
             MainDrawerItem(
-                name: '전장 달력',
-                icon: Icons.calendar_month,
-                onPressed: () => onItemPressed(context, index: 5)
-            ),
-            MainDrawerItem(
                 name: '외곽 유적지대',
                 icon: Icons.chevron_right,
                 onPressed: () => onItemPressed(context, index: 2)),
