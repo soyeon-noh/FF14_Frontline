@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Shilla',
             textTheme: TextTheme(
               bodyText1: TextStyle(
-                  color: Color.fromRGBO(215, 18, 18, 1.0), fontSize: 28.0),
+                  color: Color.fromRGBO(222, 60, 60, 1.0), fontSize: 28.0),
+                  // color: Color.fromRGBO(215, 18, 18, 1.0), fontSize: 28.0),
               bodyText2: TextStyle(
                   color: Colors.white, fontSize: 18.0, fontFamily: 'Noto'),
             )),
