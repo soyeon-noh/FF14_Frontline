@@ -36,6 +36,10 @@ class MainDrawer extends StatelessWidget {
                 icon: Icons.home,
                 onPressed: () => onItemPressed(context, index: 0)),
             MainDrawerItem(
+                name: '전장 달력',
+                icon: Icons.home,
+                onPressed: () => onItemPressed(context, index: 5)),
+            MainDrawerItem(
                 name: '외곽 유적지대',
                 icon: Icons.chevron_right,
                 onPressed: () => onItemPressed(context, index: 1)),
@@ -63,23 +67,23 @@ class MainDrawer extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MyApp(bodyWidget: MainBody())));
+            context, MaterialPageRoute(builder: (context) =>  MyApp(bodyWidget: MainBody())));
         break;
       case 1:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MyApp(bodyWidget: TheBorderlandRuins())));
+            context, MaterialPageRoute(builder: (context) =>  MyApp(bodyWidget: TheBorderlandRuins())));
         break;
       case 2:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MyApp(bodyWidget: SealRock())));
+            context, MaterialPageRoute(builder: (context) => MyApp(bodyWidget: SealRock())));
         break;
       case 3:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MyApp(bodyWidget: TheFieldsOfGlory())));
+            context, MaterialPageRoute(builder: (context) => MyApp(bodyWidget: TheFieldsOfGlory())));
         break;
       case 4:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MyApp(bodyWidget: OnsalHakair())));
+            context, MaterialPageRoute(builder: (context) => MyApp(bodyWidget: OnsalHakair())));
         break;      
     }
   }
