@@ -14,21 +14,25 @@ class GuidePage extends StatelessWidget {
           title: '외곽 유적지대',
           subTitle: '제압전',
           frontline: 'TheBorderlandRuins',
+          route: '/ruins',
         ),
         GuidePageBox(
           title: '봉인된 바위섬',
           subTitle: '쟁탈전',
           frontline: 'SealRock',
+          route : '/rock'
         ),
         GuidePageBox(
           title: '영광의 평원',
           subTitle: '쇄빙전',
           frontline: 'TheFieldsOfGlory',
+          route: '/fields',
         ),
         GuidePageBox(
           title: '온살 하카이르',
           subTitle: '계절끝 합전',
           frontline: 'OnsalHakair',
+          route: '/onsal',
         ),
       ],
     );

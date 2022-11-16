@@ -67,23 +67,23 @@ class MainDrawer extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) =>  MyApp(bodyWidget: MainBody())));
+            context, MaterialPageRoute(builder: (context) =>  MainBody()));
         break;
       case 1:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) =>  MyApp(bodyWidget: TheBorderlandRuins())));
+            context, MaterialPageRoute(builder: (context) =>  TheBorderlandRuins()));
         break;
       case 2:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MyApp(bodyWidget: SealRock())));
+            context, MaterialPageRoute(builder: (context) => SealRock()));
         break;
       case 3:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MyApp(bodyWidget: TheFieldsOfGlory())));
+            context, MaterialPageRoute(builder: (context) => TheFieldsOfGlory()));
         break;
       case 4:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MyApp(bodyWidget: OnsalHakair())));
+            context, MaterialPageRoute(builder: (context) => OnsalHakair()));
         break;      
     }
   }
