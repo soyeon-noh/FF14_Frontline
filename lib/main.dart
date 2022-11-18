@@ -13,7 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // 조매 26
 
   // 국제화
-  initializeDateFormatting().then(
+  await initializeDateFormatting().then(
     (value) => HomeScreen(),
   );
 
