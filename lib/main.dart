@@ -6,11 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ff_frontline/screen/HomeScreen.dart';
 
+// 파이어 베이스
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 // 국제화
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // 조매 26
+
+  // 파이어 베이스
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   // 국제화
   await initializeDateFormatting().then(
