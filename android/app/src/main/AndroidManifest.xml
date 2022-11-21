@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kodeongee.frontline">
    <application
+        android:name="${applicationName}"
         android:label="전장가자"
         android:icon="@mipmap/ic_launcher">
         <activity
