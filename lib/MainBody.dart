@@ -22,13 +22,14 @@ class MainBody extends StatelessWidget {
     return formatDate;
   }
 
-  List<String> getFrontline(int num) {
-    var list = [
-      ['영광의 평원','(쇄빙전)'],
-      ['온살 하카이르','(계절끝 합전)'],
-      ['외곽 유적지대','(제압전)'],
-      ['봉인된 바위섬','(쟁탈전)'],
-    ];
+  static var list = [
+    ['영광의 평원','(쇄빙전)'],
+    ['온살 하카이르','(계절끝 합전)'],
+    ['외곽 유적지대','(제압전)'],
+    ['봉인된 바위섬','(쟁탈전)'],
+  ];
+
+  int getFrontline(int num) {
 
     var baseDate = new DateTime(2022, 7, 20, 0, 0, 0, 0);
     var date = getDate(num);
@@ -39,7 +40,7 @@ class MainBody extends StatelessWidget {
 
     var frontlineIndex = diffDay % 4;
 
-    return list[frontlineIndex];
+    return frontlineIndex;
   }
 
   @override
@@ -52,51 +53,58 @@ class MainBody extends StatelessWidget {
           FrontlineCard(
             date: getDateFormat(-1),
             opacity: 0.3,
-            frontline: getFrontline(-1),
+            frontline: list[getFrontline(-1)],
             dateColor: Colors.white,
             frontlineColor: Colors.white,
+              frontlineIndex: getFrontline(-1)
           ),
           FrontlineCard(
               date: getDateFormat(0),
               opacity: 1,
-              frontline: getFrontline(0),
+              frontline: list[getFrontline(0)],
               dateColor: Colors.black,
               frontlineColor: Colors.black,
+              frontlineIndex: getFrontline(0)
           ),
           FrontlineCard(
             date: getDateFormat(1),
             opacity: 0.3,
-            frontline: getFrontline(1),
+            frontline: list[getFrontline(1)],
             dateColor: Colors.white,
             frontlineColor : Colors.white,
+              frontlineIndex: getFrontline(1)
           ),
           FrontlineCard(
             date: getDateFormat(2),
             opacity: 0.3,
-            frontline: getFrontline(2),
+            frontline: list[getFrontline(2)],
             dateColor: Colors.white,
             frontlineColor : Colors.white,
+              frontlineIndex: getFrontline(2)
           ),
           FrontlineCard(
             date: getDateFormat(3),
             opacity: 0.3,
-            frontline: getFrontline(3),
+            frontline: list[getFrontline(3)],
             dateColor: Colors.white,
             frontlineColor : Colors.white,
+              frontlineIndex: getFrontline(3)
           ),
           FrontlineCard(
             date: getDateFormat(4),
             opacity: 0.3,
-            frontline: getFrontline(4),
+            frontline: list[getFrontline(4)],
             dateColor: Colors.white,
             frontlineColor : Colors.white,
+              frontlineIndex: getFrontline(4)
           ),
           FrontlineCard(
             date: getDateFormat(5),
             opacity: 0.3,
-            frontline: getFrontline(5),
+            frontline: list[getFrontline(5)],
             dateColor: Colors.white,
             frontlineColor : Colors.white,
+            frontlineIndex: getFrontline(5)
           )
         ],
       ),

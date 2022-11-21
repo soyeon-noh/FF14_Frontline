@@ -1,3 +1,4 @@
+import 'package:ff_frontline/onPressed/OnItemPressed.dart';
 import 'package:flutter/material.dart';
 
 class FrontlineCard extends StatelessWidget {
@@ -8,6 +9,7 @@ class FrontlineCard extends StatelessWidget {
     required List<String> this.frontline,
     required Color? this.dateColor,
     required Color? this.frontlineColor,
+    required int this.frontlineIndex,
   }) : super(key: key);
 
   final date;
@@ -15,6 +17,7 @@ class FrontlineCard extends StatelessWidget {
   final frontline;
   final dateColor;
   final frontlineColor;
+  final frontlineIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -33,31 +36,40 @@ class FrontlineCard extends StatelessWidget {
                 blurRadius: 12,
                 spreadRadius: 0)
           ]),
-      child: Column(
-        children: [
-          Container(
-            child:
-                Text(date, style: TextStyle(fontSize: 20, color: dateColor, fontFamily: 'shilla')),
-            margin: EdgeInsets.fromLTRB(2.0, 30.0, 0.0, 0.0),
-          ),
-          Container(
-            child: Column(
-              children: [
-                Text(frontline[0],
-                    style: TextStyle(
-                        fontSize: 28, color: frontlineColor, fontFamily: 'noto')
-                ),
-                Text(frontline[1],
-                    style: TextStyle(
-                        fontSize: 18, color: frontlineColor, fontFamily: 'noto')
-                ),
-
-              ],
+      child:  Column(
+          children: [
+            GestureDetector(
+              onTap: (){
+                onItemPressed(context, index: frontlineIndex);
+              },
+              child:
+              Column(
+                children: [
+                  Container(
+                    child:
+                        Text(date, style: TextStyle(fontSize: 20, color: dateColor, fontFamily: 'shilla')),
+                    margin: EdgeInsets.fromLTRB(2.0, 30.0, 0.0, 0.0),
+                  ),
+                  Container(
+                    child: Column(
+                      children: [
+                        Text(frontline[0],
+                            style: TextStyle(
+                                fontSize: 28, color: frontlineColor, fontFamily: 'noto')
+                        ),
+                        Text(frontline[1],
+                            style: TextStyle(
+                                fontSize: 18, color: frontlineColor, fontFamily: 'noto')
+                        ),
+                      ],
+                    ),
+                    margin: EdgeInsets.fromLTRB(2.0, 16.0, 0.0, 0.0),
+                  )
+                ],
+              ),
             ),
-            margin: EdgeInsets.fromLTRB(2.0, 16.0, 0.0, 0.0),
-          )
-        ],
-      ),
+          ],
+        ),
     );
   }
 }
