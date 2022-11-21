@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -40,6 +43,124 @@ class _MatchingPageState extends State<MatchingPage> {
 
   bool matchingOn = false;
 
+  int count = 0;
+
+  // document
+  final matchingDocumentReference = FirebaseFirestore.instance
+      .collection("matching")
+      .doc("QsOgjI6qxHPPTJAwiJpf");
+
+  Stream matchingDocumentStream = FirebaseFirestore.instance
+      .collection("matching")
+      .doc("QsOgjI6qxHPPTJAwiJpf")
+      .snapshots();
+
+  // collection
+  final matchingCollectionReference =
+      FirebaseFirestore.instance.collection("matching");
+
+  Stream matchingCollectionStream =
+      FirebaseFirestore.instance.collection("matching").snapshots();
+
+  Future<int> readCountData() async {
+    // one shot
+
+    // Map<String, dynamic>? result =
+    //     await matchingDocumentReference.get().then((value) => value.data());
+    //
+    // setState(() {
+    //   count = result!['count'];
+    // });
+
+    // stream document
+    var snapshot = FirebaseFirestore.instance
+        .collection('matching')
+        .doc('QsOgjI6qxHPPTJAwiJpf')
+        .get();
+    // print('뭔데이거 $snapshot');//Future<DocumentSnapshot<Map<String, dynamic>>>
+    var result2 = await snapshot.then((value) => value.data());
+
+    print('result2 $result2');
+    print('count는 뭐야 ${result2!['count']}');
+
+    // stream collection
+    // var snapshot = FirebaseFirestore.instance.collection('matching').get().then((value) => value.docs.forEach((doc){
+    //   print(doc["count"]);
+    // }));
+    //
+    // print('뭔데이거 $snapshot');
+    // var result2 = await snapshot.then((value)=> print(value));
+    //
+    // print('result2 $result2');
+    // print('count는 뭐야 ${result2!['count']}');
+
+
+    // setState(() {
+    //   count = result2!['count'];
+    // });
+
+    return result2!['count'];
+  }
+
+
+
+  void addCountData() async {
+    // 기존 날짜 가져오기
+    Map<String, dynamic>? data = await matchingDocumentReference.get().then((value) => value.data());
+    // print(data!['date'].toDate());
+    DateTime preDate = data!['date'].toDate();
+
+    // 오늘날짜
+    DateTime now = new DateTime.now();
+    print('now $now');
+
+    // 날짜가 바뀌면
+    if(preDate.day != now.day){
+      // 카운트 1부터 다시세기
+      count = 1;
+    }
+    // 날짜가 그대로면
+    else{
+      // 기존 카운트 가져오기
+      int readCount = await readCountData();
+      setState(() {
+        count = readCount + 1;
+      });
+    }
+
+    matchingDocumentReference.update({'count': count, 'date': now});
+  }
+
+  void subtractionCountData() async {
+    // 기존 날짜 가져오기
+    Map<String, dynamic>? data = await matchingDocumentReference.get().then((value) => value.data());
+    // print(data!['date'].toDate());
+    DateTime preDate = data!['date'].toDate();
+
+    // 오늘날짜
+    DateTime now = new DateTime.now();
+    print('now $now');
+
+    print('이전날짜 ${preDate.day } 오늘날짜 ${now.day}');
+    // 날짜가 바뀌면
+    if(preDate.day != now.day){
+      // 카운트 0으로 되돌리기
+      count = 0;
+    }
+    // 날짜가 그대로면
+    else{
+      int readCount = await readCountData();
+      if(count > 0){
+        setState(() {
+          count = readCount - 1;
+        });
+      }
+    }
+
+    matchingDocumentReference.update({'count': count, 'date': now});
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -74,16 +195,31 @@ class _MatchingPageState extends State<MatchingPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children: const [
+                children: [
                   Text(
                     '현재',
                     style: TextStyle(color: Colors.white70),
                   ),
                   SizedBox(width: 15),
-                  Text(
-                    '3 / 72 명',
-                    style: TextStyle(fontSize: 25),
-                  ),
+                  StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                      stream: FirebaseFirestore.instance
+                          .collection("matching")
+                          .doc('QsOgjI6qxHPPTJAwiJpf')
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        // Map<String, dynamic> data = snapshot.data! as Map<String, dynamic>;
+
+                        print(snapshot.data!.data()!['count']);
+                        if(snapshot.connectionState == ConnectionState.waiting){
+                          return CircularProgressIndicator();
+                        }
+                        return Text(
+                          '${snapshot.data!.data()!['count']} / 72 명',
+                          style: TextStyle(fontSize: 25),
+                        );
+
+                      }),
+
                   SizedBox(width: 15),
                   Text(
                     '매칭중',
@@ -108,12 +244,15 @@ class _MatchingPageState extends State<MatchingPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40)),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     print('매칭을 취소하시겠습니까');
                     setState(() {
                       matchingOn = false;
                     });
-                    print(matchingOn);
+
+                    // count 빼기
+                    subtractionCountData();
+                    print('$count count');
                   },
                   child: Text('매칭중'),
                 )
@@ -133,7 +272,9 @@ class _MatchingPageState extends State<MatchingPage> {
                       matchingOn = true;
                     });
 
-                    print(matchingOn);
+                    // count 더하기
+                    addCountData();
+                    print('$count count');
                   },
                   child: Text('매칭'),
                 )
