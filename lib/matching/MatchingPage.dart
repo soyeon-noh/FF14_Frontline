@@ -209,13 +209,16 @@ class _MatchingPageState extends State<MatchingPage> {
                       builder: (context, snapshot) {
                         // Map<String, dynamic> data = snapshot.data! as Map<String, dynamic>;
 
-                        print(snapshot.data!.data()!['count']);
+                        // snapshot의 데이터는 처음에 null일 가능성이 매우 높으니 data!와 같이 작성하면
+                        // 오버플로우 오류가 발생한다. 주의하자.
+                        print(snapshot.data?.data()!['count']);
                         if(snapshot.connectionState == ConnectionState.waiting){
                           return CircularProgressIndicator();
                         }
                         return Text(
-                          '${snapshot.data!.data()!['count']} / 72 명',
+                          '${snapshot.data?.data()!['count']} / 72 명',
                           style: TextStyle(fontSize: 25),
+                          overflow: TextOverflow.visible,
                         );
 
                       }),
